@@ -33,19 +33,10 @@ exit(); }
 
 
         </div>
-        <button class="button-86" name="sign_out" role="button">SIGN OUT</button>
+        <button type="button" class="button-86" name="sign_out"><a href="./sign_out.php">Sign Out</a></button>
 
 
 
-
-        <?php
-        if(isset($_GET['sign_out'])) 
-        {
-            session_destroy();
-            unset($_SESSION['policeid']);
-            header('location:login.php');
-            exit();}
-            ?>
     </body>
 
     </html>

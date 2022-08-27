@@ -52,6 +52,7 @@ if(isset($_POST['sign_up']))
 				
                 $aResult = mysqli_query($con, "INSERT INTO regist (`first_name`,`last_name`,`user_name`,`email`,`mobile_no`,`aadharno`,`pass`) values ('$first_name','$last_name','$user_name','$email','$mobile_no','$aadharno','$pass')");
                  echo "<script>alert('Registered Succesfully You can Log In Now')</script>";
+				 header("location:UserLogin.php");
         }
         }
 	}

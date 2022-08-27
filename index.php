@@ -39,8 +39,11 @@
 
                 <div id="classic">
                     <ul>
-                        <li><a href="./UserRegistration.php" target="_blank">Login/Register as User</a></li>
+                        <li><a href="./adminlogin.php" target="_blank">Login as Admin(Head)</a></li>
                         <li><a href="./PoliceRegistration.php" target="_blank">Login/Register as Police Officer</a></li>
+                        <li><a href="./UserRegistration.php" target="_blank">Login/Register as User</a></li>
+                        
+                        
                     </ul>
                 </div>
 

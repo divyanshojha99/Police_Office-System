@@ -173,7 +173,7 @@ html {
     right: 0;
     bottom: 0;
     width: 17rem;
-    height: 5rem;
+    height: 7.5rem;
     background-color: var(--midBlue);
     display: none;
     margin: auto;
@@ -194,7 +194,7 @@ html {
     transition: all 0.5s ease;
 }
 
-#classic ul li:nth-of-type(2) {
+#classic ul li:nth-of-type(3) {
     border-bottom: 0px;
 }
 

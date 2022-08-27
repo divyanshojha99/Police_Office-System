@@ -53,7 +53,7 @@ if(isset($_POST['sign_up']))
 				if(move_uploaded_file($_FILES['file']['tmp_name'], $path) ){
 					$pResult = mysqli_query($con, "INSERT INTO police (`first_name`,`last_name`,`user_name`,`email`,`policeid`,`pass`,`mobile_no`,`joiningdate`,`office`) values ('$first_name','$last_name','$user_name','$email','$policeid','$pass','$mobile_no','$joiningdate','$office')");
                     echo "<script>alert('successfully Register Please Wait for Comfirmation From Head of Police Department');</script>";
-				
+				    header("location:PoliceLogin.php");
             
         }
         }
