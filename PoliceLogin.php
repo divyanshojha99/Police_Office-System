@@ -26,12 +26,20 @@ if (isset($_POST['policeid'])){
     $policeid=$_REQUEST['policeid'];
 	$pass = ($_REQUEST['pass']);
     $query = "SELECT * FROM `police` WHERE `policeid`='$policeid' and `user_name`='$user_name' and `pass`='' + '$pass'";
-	$result = mysqli_query($con,$query) or die(mysqli_error($con));
+    $result = mysqli_query($con,$query) or die(mysqli_error($con));
 	$rows = mysqli_num_rows($result);
+    $query2 = "SELECT * FROM `policeverify` WHERE `policeid`='$policeid' and `checkpolice`='yes'";
+    $result2 = mysqli_query($con,$query2) or die(mysqli_error($con));
+	$rows2 = mysqli_num_rows($result2);
         if($rows==1){
+            if($rows2==1){
 	    $_SESSION['policeid'] = $policeid;
 	    header("Location: welcome_police.php");
-         }else{
+         }
+         echo "<div class='form'>
+<h3 style=color:white; >Your police ID not approved yet from Admin,Kindly Wait! <a style=color:orange; href='PoliceLogin.php'>Try Again</a></h3>
+<br> </div>";
+        }else{
 	echo "<div class='form'>
 <h3 style=color:white; >Police ID/Username/password is incorrect, <a style=color:orange; href='PoliceLogin.php'>Try Again</a></h3>
 <br> </div>";

@@ -13,12 +13,15 @@ if(isset($_POST['sign_up']))
 	$pass=$_POST['pass'];
 	$c_pass=$_POST['c_pass'];
 	$check_email = mysqli_query($con, "SELECT email FROM regist where email = '$email' ");
-	$sql = "SELECT `user_name` FROM regist WHERE `user_name`='{$user_name}'";
-	$result = mysqli_query($con,$sql) or die("Query unsuccessful") ;
-	if(mysqli_num_rows($check_email) > 0){
+	$check_aadhar = mysqli_query($con, "SELECT aadharno FROM regist where aadharno= '$aadharno' ");
+	$result = mysqli_query($con,"SELECT `user_name` FROM regist WHERE `user_name`='{$user_name}'") or die("Query unsuccessful") ;
+	if(mysqli_num_rows($check_email)> 0){
 		echo('Email Already exists');
 	}
+	elseif(mysqli_num_rows($check_aadhar) > 0){
+		echo('Aadhar Already Registered');
 
+	}
 	elseif (mysqli_num_rows($result) > 0) {
 	 echo " Username is already exist";}
 	
@@ -38,19 +41,20 @@ if(isset($_POST['sign_up']))
 			{
 				echo "<script>alert('Password Does Not Same')</script>";
 			}
-			elseif(strlen($aadharno) != 12)
+			elseif(strlen($aadharno)!=12)
 			{
 				echo "<script>alert('Aadhar Number must be 12 digits')</script>";
 				
 			}
             else{
-				$path = "useraadhar/";
-				$filename=basename( $_FILES['file']['name']);
+				$path = "useraadharcard/";
+				$temp = explode(".", $_FILES["file"]["name"]);
+                $filename = $aadharno. '.' . end($temp);
 				$path = $path .$filename;
 			   
 				if(move_uploaded_file($_FILES['file']['tmp_name'], $path) ){
 				
-                $aResult = mysqli_query($con, "INSERT INTO regist (`first_name`,`last_name`,`user_name`,`email`,`mobile_no`,`aadharno`,`pass`) values ('$first_name','$last_name','$user_name','$email','$mobile_no','$aadharno','$pass')");
+                $aResult = mysqli_query($con, "INSERT INTO regist (`first_name`,`last_name`,`user_name`,`email`,`mobile_no`,`aadharno`,`pass`,`document`) values ('$first_name','$last_name','$user_name','$email','$mobile_no','$aadharno','$pass','$path')");
                  echo "<script>alert('Registered Succesfully You can Log In Now')</script>";
 				 header("location:UserLogin.php");
         }

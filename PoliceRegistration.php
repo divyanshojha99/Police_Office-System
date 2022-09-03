@@ -12,6 +12,7 @@ if(isset($_POST['sign_up']))
     $policeid=$_POST['policeid'];
     $pass=$_POST['pass'];
 	$office=$_POST['office'];
+	$police_city=filter_input(INPUT_POST, 'police_city', FILTER_SANITIZE_STRING);
     $c_pass=$_POST['c_pass'];
 	$mobile_no=$_POST['mobile_no'];
 	$joiningdate=date('Y-m-d',strtotime($_POST['joiningdate']));
@@ -46,16 +47,18 @@ if(isset($_POST['sign_up']))
 				echo "<script>alert('Password Does Not Same')</script>";
 			}
             else{
-				$path = "policeid/";
-				$filename=basename( $_FILES['file']['name']);
-				$path = $path .$filename;
-			   
+				$path = "idpolice/";
+				$temp = explode(".", $_FILES["file"]["name"]);
+                $filename = $policeid. '.' . end($temp);
+				$path= $path .$filename;
 				if(move_uploaded_file($_FILES['file']['tmp_name'], $path) ){
-					$pResult = mysqli_query($con, "INSERT INTO police (`first_name`,`last_name`,`user_name`,`email`,`policeid`,`pass`,`mobile_no`,`joiningdate`,`office`) values ('$first_name','$last_name','$user_name','$email','$policeid','$pass','$mobile_no','$joiningdate','$office')");
-                    echo "<script>alert('successfully Register Please Wait for Comfirmation From Head of Police Department');</script>";
+					$pResult = mysqli_query($con, "INSERT INTO police (`first_name`,`last_name`,`user_name`,`email`,`policeid`,`pass`,`mobile_no`,`joiningdate`,`office`,`police_city`,`document`,`adminc`) values ('$first_name','$last_name','$user_name','$email','$policeid','$pass','$mobile_no','$joiningdate','$office','$police_city','$path','no')");
+					$aquery=mysqli_query($con, "INSERT INTO policeverify (`policeid`,`checkpolice`) values('$policeid','notconfirmed')");
+					echo "<script>alert('successfully Register Please Wait for Comfirmation From Head of Police Department');</script>";
 				    header("location:PoliceLogin.php");
             
         }
+		
         }
 	}
 ?>
@@ -63,7 +66,7 @@ if(isset($_POST['sign_up']))
 <html>
 
 <head>
-	<link rel="stylesheet" href="./PoliceRegistration.css">
+	<style> <?php echo include 'PoliceRegistration.css' ?> </style>
 	<title>Police Registration Page</title>
 	<link rel="icon" type="image/x-icon" href="./images/mis-logo-png-transparent.png">
 </head>
@@ -102,6 +105,10 @@ if(isset($_POST['sign_up']))
 						required>
 				</div>
 				<div class="box-div">
+                        <label for="policestationcity">Select the police Station District</label>
+                        <select name="police_city" id="police_city"></select>
+                    </div>
+				<div class="box-div">
 				<label for="joingingdate" class="photoID">Your Joining Date</label>
 					<input id="joiningdate" type="date" name="joiningdate" value=""
 						required>
@@ -121,6 +128,18 @@ if(isset($_POST['sign_up']))
 			</div>
 		</form>
 	</section>
+	<script>
+		var mp = ["Agar Malwa", "Alirajpur", "Anuppur", "Ashoknagar", "Balaghat", "Barwani", "Betul", "Bhind", "Bhopal", "Burhanpur", "Chhatarpur", "Chhindwara", "Damoh", "Datia", "Dewas", "Dhar", "Dindori", "Guna", "Gwalior", "Harda", "Hoshangabad", "Indore", "Jabalpur", "Jhabua", "Katni", "Khandwa", "Khargone", "Mandla", "Mandsaur", "Morena", "Narsinghpur", "Neemuch", "Panna", "Raisen", "Rajgarh", "Ratlam", "Rewa", "Sagar", "Satna",
+            "Sehore", "Seoni", "Shahdol", "Shajapur", "Sheopur", "Shivpuri", "Sidhi", "Singrauli", "Tikamgarh", "Ujjain", "Umaria", "Vidisha"];
+
+        var select = document.getElementById("police_city");
+        for (var i = 0; i < mp.length; i++) {
+            var optn = mp[i];
+            var el = document.createElement("option");
+            el.textContent = optn;
+            el.value = optn;
+            select.appendChild(el);}
+		</script>
 </body>
 
 </html>

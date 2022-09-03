@@ -65,10 +65,11 @@ font-family: 'Rajdhani', sans-serif;
     background-color: var(--opacBlack);
     padding: 1rem;
     width: 60%;
-    height: 78rem;
+    height: 100rem;
     color: var(--white);
     font-family: 'Poppins', sans-serif;
     display: none;
+    margin-bottom: 0.5rem;
 }
 
 input::file-selector-button {
@@ -159,7 +160,8 @@ input::file-selector-button {
     font-size: 1rem;
 }
 
-#Crime-Cat {
+#Crime-Cat,
+#crimedist {
     width: 20rem;
     padding: 0.5rem;
     position: relative;
@@ -168,7 +170,8 @@ input::file-selector-button {
     font-size: 0.8rem;
 }
 
-#Crime-Cat:focus {
+#Crime-Cat:focus,
+#crimedist:focus {
     outline: none;
 }
 
@@ -194,7 +197,8 @@ input::file-selector-button {
 }
 
 .cformint input {
-    width: 20.4rem;
+    width: 20.5rem;
+    padding: 0.5rem 1rem;
 }
 
 .box-div input::placeholder {
@@ -223,7 +227,8 @@ input::file-selector-button {
     height: auto;
 }
 
-#Complaint_form {
+#Complaint_form,
+#widthraw_request {
     padding: 1rem 2rem;
     background-color: var(--darkblue);
     font-size: 1rem;
@@ -235,85 +240,21 @@ input::file-selector-button {
 }
 
 #signature,
-#proof {
+#incident {
     width: 20rem;
     font-family: 'Poppins', sans-serif;
     font-size: 0.8rem;
 }
 
+#widthraw_request {
+    width: 22rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 .lable-box input::selection {
     padding: 1rem;
 }
-
-
-/* CSS for Button in welcome police form
-
-.button-86 {
-    all: unset;
-    width: 100px;
-    height: 30px;
-    font-size: 16px;
-    background: transparent;
-    border: none;
-    position: absolute;
-    color: #f0f0f0;
-    cursor: pointer;
-    z-index: 1;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-}
-
-.button-86::after,
-.button-86::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: -99999;
-    transition: all .4s;
-}
-
-.button-86::before {
-    transform: translate(0%, 0%);
-    width: 100%;
-    height: 100%;
-    background: #28282d;
-    border-radius: 10px;
-}
-
-.button-86::after {
-    transform: translate(10px, 10px);
-    width: 35px;
-    height: 35px;
-    background: #ffffff15;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border-radius: 50px;
-}
-
-.button-86:hover::before {
-    transform: translate(5%, 20%);
-    width: 110%;
-    height: 110%;
-}
-
-.button-86:hover::after {
-    border-radius: 10px;
-    transform: translate(0, 0);
-    width: 100%;
-    height: 100%;
-}
-
-.button-86:active::after {
-    transition: 0s;
-    transform: translate(0, 5%);
-} */
 
 @media screen and (max-device-width: 480px) and (orientation: portrait) {
     .midtext2 {
@@ -328,7 +269,7 @@ input::file-selector-button {
     #cform {
         padding: 1rem;
         width: 95%;
-        height: 78rem;
+        height: 100rem;
     }
     .lable-box {
         width: 10rem;
@@ -370,7 +311,7 @@ input::file-selector-button {
     #cform {
         padding: 1rem;
         width: 95%;
-        height: 78rem;
+        height: 100rem;
     }
     .lable-box {
         width: 20rem;
@@ -413,7 +354,7 @@ input::file-selector-button {
     #cform {
         padding: 1rem;
         width: 95%;
-        height: 78rem;
+        height: 100rem;
     }
     .lable-box {
         width: 20rem;
@@ -456,7 +397,7 @@ input::file-selector-button {
     #cform {
         padding: 1rem;
         width: 95%;
-        height: 78rem;
+        height: 100rem;
     }
     .lable-box {
         width: 20rem;
@@ -499,7 +440,7 @@ input::file-selector-button {
     #cform {
         padding: 1rem;
         width: 95%;
-        height: 78rem;
+        height: 100rem;
     }
     .lable-box {
         width: 10rem;
@@ -539,7 +480,7 @@ input::file-selector-button {
     #cform {
         padding: 1rem;
         width: 95%;
-        height: 78rem;
+        height: 100rem;
     }
     .lable-box {
         width: 10rem;
