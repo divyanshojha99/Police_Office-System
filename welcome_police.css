@@ -51,7 +51,7 @@ body,
 }
 
 #wlc-police-links {
-    width: 50rem;
+    width: 40rem;
     height: 100%;
     display: flex;
     align-items: center;
@@ -73,7 +73,6 @@ body,
 }
 
 .mid-section-police {
-    min-height: 10rem;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -81,7 +80,7 @@ body,
     flex-direction: column;
     width: 100%;
     height: auto;
-    min-height: 30rem;
+    min-height: 25rem;
 }
 
 .button-table-complaints,
@@ -99,7 +98,7 @@ body,
     font-family: 'Poppins', sans-serif;
     border-radius: 1rem;
     margin-bottom: 0.5rem;
-    width: 30rem;
+    width: 23rem;
     height: 3rem;
     border: 0px;
 }
@@ -107,20 +106,23 @@ body,
 #table,
 #hotspot-list,
 #policeofficers,
-#validpoliceofficers {
+#validpoliceofficers,
+#Attendence {
     display: none;
     width: 100%;
     height: auto;
     font-family: 'Raleway', sans-serif;
     color: var(--black);
     font-weight: 900;
+    overflow-x: auto;
 }
 
 #table tr:nth-child(even),
 #hotspot-list tr:nth-child(even),
 #case-widthraw tr:nth-child(even),
 #policeofficers tr:nth-child(even),
-#validpoliceofficers tr:nth-child(even) {
+#validpoliceofficers tr:nth-child(even),
+#attend tr:nth-child(even) {
     background-color: var(--lightBlue);
 }
 
@@ -128,7 +130,8 @@ body,
 #hotspot-list tr:nth-child(odd),
 #case-widthraw tr:nth-child(odd),
 #policeofficers tr:nth-child(odd),
-#validpoliceofficers tr:nth-child(odd) {
+#validpoliceofficers tr:nth-child(odd),
+#attend tr:nth-child(odd) {
     background-color: var(--gggg);
 }
 
@@ -136,23 +139,33 @@ body,
 #hotspot-list tr:nth-child(1),
 #case-widthraw tr:nth-child(1),
 #policeofficers tr:nth-child(1),
-#validpoliceofficers tr:nth-child(1) {
+#validpoliceofficers tr:nth-child(1),
+#attend tr:nth-child(1) {
     background-color: var(--crimsom);
     color: var(--white);
 }
 
 .clist {
-    width: 100%;
+    width: 95%;
     height: auto;
     border-collapse: collapse;
+    margin: 0 auto;
+    word-break: normal;
 }
 
 .clist,
 tr,
 td {
-    border: 0.02rem solid var(--green);
-    padding: 0.3rem;
+    border: 0.03rem solid var(--white);
     font-size: 0.8rem;
+}
+
+td {
+    width: 10rem;
+    height: 3rem;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0.1rem;
 }
 
 #Attandence {
@@ -186,12 +199,14 @@ td {
 }
 
 .sign-out-box {
-    background-color: var(--lgreen);
-    border-radius: 0.2rem;
+    background-color: var(--white);
+    /* border-radius: 0.2rem; */
     position: absolute;
-    top: 104%;
-    right: 1.5%;
+    top: 100%;
+    right: 0%;
     display: none;
+    width: 12rem;
+    height: 12rem;
 }
 
 .sign-out-box button {
@@ -208,6 +223,7 @@ td {
     font-family: 'Poppins', sans-serif;
     width: 100%;
     height: 100%;
+    text-decoration: none;
 }
 
 .appbtn1,
@@ -221,3 +237,121 @@ td {
     text-decoration: none;
     border-radius: 0.2rem;
 }
+
+#profile-card {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    list-style: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#profile-card li {
+    width: 100%;
+    padding: 0.5rem 0rem;
+    border-bottom: 0.05rem solid var(--black);
+    font: 0.2rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+#profile-card li:nth-of-type(3) {
+    border-bottom: 0rem solid var(--black);
+}
+
+.sign-out-box2 {
+    background-color: var(--lgreen);
+    border-radius: 0.2rem;
+    position: absolute;
+    top: 102%;
+    right: 1.5%;
+    display: none;
+}
+
+.sign-out-box2 button {
+    padding: 0.5rem 1rem;
+    background-color: var(--darkblue);
+    border: 0px;
+    border-radius: 0.2rem;
+    cursor: pointer;
+}
+
+.sign-out-box2 button a {
+    color: var(--white);
+    font-size: 0.8rem;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+#popup {
+    width: 25rem;
+    height: 10rem;
+    background-color: var(--white);
+    border-radius: 0.5rem;
+    border: 0.2rem solid var(--black);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#popup h3 {
+    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    color: var(--darkblue);
+}
+
+#popup a {
+    background-color: var(--darkblue);
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: var(--white);
+    border-radius: 0.1rem;
+    border: 0px;
+    padding: 0.5rem 2rem;
+}
+
+@media screen and (max-device-width: 480px) and (orientation: portrait) {
+    .nav-wlc-police h2 {
+        font-size: 0.7rem;
+    }
+    #wlc-police-links {
+        width: 20rem;
+    }
+    #wlc-police-links li a {
+        font-size: 0.7rem;
+    }
+    #compBtn {
+        font-size: 0.5rem;
+        width: 12rem;
+        height: 1.2rem;
+    }
+    #Attandence {
+        height: 1.2rem;
+        font-size: 0.7rem;
+    }
+    .nav-wlc-police {
+        width: 100vw;
+        padding: 1rem;
+    }
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {}
+
+@media screen and (max-device-width: 640px) and (orientation: landscape) {}
+
+@media screen and (max-device-width: 640px) {}
+
+@media screen and (min-device-width: 320px) and (-webkit-min-device-pixel-ratio: 2) {}
+
+@media (device-height: 568px) and (device-width: 320px) and (-webkit-min-device-pixel-ratio: 2) {}

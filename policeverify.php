@@ -44,8 +44,8 @@
         <td><?php echo $row["joiningdate"]; ?></td>
         <td><?php echo $row["office"]; ?></td>
         <td><?php echo $row["police_city"]; ?></td>
-        <td><a class="appbtn1" href="updates.php?id=<?=$row['policeid']?>">Accept</a></td>
-        <td><a class="appbtn2" href="updates.php?rid=<?=$row['policeid']?>">Reject</a></td>
+        <td><a class="appbtn1" href="admin.php?id=<?=$row['policeid']?>">Accept</a></td>
+        <td><a class="appbtn2" href="admin.php?rid=<?=$row['policeid']?>">Reject</a></td>
 </td>
 
       </tr>

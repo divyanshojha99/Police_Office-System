@@ -20,6 +20,42 @@ exit(); }
     
     <title>Welcome Admin</title>
 </head>
+<?php
+    require('connection.php');
+    if (isset($_GET['id'])){
+        $pid=mysqli_real_escape_string($con,$_GET['id']);
+        $result = mysqli_query($con,"SELECT `policeid` FROM policeverify WHERE `policeid`='{$pid}'") or die("Query unsuccessful") ;
+        if(mysqli_num_rows($result)> 1){
+            echo "<div id='popup'>
+            <h3> Already Verified! </h3><a href='admin.php'>OK</a>
+            </div>";
+        }
+    else{
+        $query2 = mysqli_query($con,"UPDATE policeverify SET `checkpolice`='yes' where policeid='$pid'");
+        $query3 = mysqli_query($con,"UPDATE police SET `adminc`='yes' where policeid='$pid'");
+        echo "<div id='popup'>
+        <h3> Verified Successfully! </h3> <a href='admin.php'>OK</a> 
+        </div>";}
+
+    }
+    if (isset($_GET['rid'])){
+        $rid=mysqli_real_escape_string($con,$_GET['rid']);
+        $rresult = mysqli_query($con,"SELECT `policeid` FROM policeverify WHERE `policeid`='{$rid}'") or die("Query unsuccessful") ;
+        if(mysqli_num_rows($rresult)> 1){
+            echo "<div class='heading'>S
+            <h3 style=color:white; >ALREADY REJECTED,<a style=color:orange; href='admin.php'>Click For Another Verification</a></h3>
+            <br> </div>";
+           }
+    else{
+        $rquery2 = mysqli_query($con,"UPDATE policeverify SET `checkpolice`='no' where policeid='$rid'");
+        $rquery3 = mysqli_query($con,"UPDATE police SET `adminc`='rejected' where policeid='$rid'");
+        echo "<div id='popup'>
+        <h3> Rejected Successfully! </h3> <a href='admin.php'>OK</a> 
+        </div>";
+    
+       }
+    }
+?>
 
 <body onload="table()">
 
@@ -27,17 +63,18 @@ exit(); }
 
     <section id="wlc_police">
         <div class="nav-wlc-police">
-            <h2>Madhya Pradesh <br> Police</h2>
+            <h2>Uttarakhand <br> Police Admin(Head)</h2>
             <nav>
                 <ul id="wlc-police-links">
                     <li><a onclick="complist()">Complaints</a></li>
                     <li><a onclick="HotspotArea()">Hotspot Areas</a></li>
                     <li><a onclick="AprovePolice()">Working Officers</a></li>
                     <li><a onclick="PoliceShow()">Approve New Police</a></li>
+                    <li><a onclick="attend()">Attendence</a></li>
                     <li><i class="fa-solid fa-user" onclick="signout()"></i></li>
                 </ul>
             </nav>
-            <div class="sign-out-box" id="sign-out-box">
+            <div class="sign-out-box2" id="sign-out-box">
                 <button type="button"><a href="./sign_out.php">Sign Out</a></button>
             </div>
         </div>
@@ -61,12 +98,17 @@ exit(); }
 
 
             <div class="ApproveCaseWidthraw">
-                <button type="button" id="compBtn" onclick="PoliceShow()">Click Here to See Police Officers Details</button>
+                <button type="button" id="compBtn" onclick="PoliceShow()">Click Here to Approve New Register Police Officers Details</button>
                 <div id="policeofficers">
                     <div id="casewidthraw"></div>
                 </div>
             </div>
-            
+            <div class="ApproveCaseWidthraw">
+                <button type="button" id="compBtn" onclick="attend()">Click Here Police Officers Attedence</button>
+                <div id="attend">
+                    <div id="Attendence"></div>
+                </div>
+            </div>
 
         </div>
         <div class="last-section-footer">
@@ -80,11 +122,13 @@ exit(); }
         var wr = true;
         var so = true;
         var po=true;
+        var tr=true;
         table = () => {
             const res = new XMLHttpRequest();
             const htres = new XMLHttpRequest();
             const wreq = new XMLHttpRequest();
             const pol = new XMLHttpRequest();
+            const at = new XMLHttpRequest();
             res.onload = function() {
                 document.getElementById("table").innerHTML = this.responseText;
             }
@@ -97,15 +141,20 @@ exit(); }
             pol.onload = function() {
                 document.getElementById("aprovedpol").innerHTML = this.responseText;
             }
+            at.onload = function() {
+                document.getElementById("Attendence").innerHTML = this.responseText;
+            }
             
-            res.open("GET", "complaint_list.php");
+            res.open("GET", "complaint_list_admin.php");
             htres.open("GET", "hotspotareas.php");
             wreq.open("GET", "policeverify.php");
             pol.open("GET","approvedpolice.php");
+            at.open("GET","admin_attendence.php");
             res.send();
             htres.send();
             wreq.send();
             pol.send();
+            at.send();
         }
 
         setInterval(function() {
@@ -153,6 +202,16 @@ exit(); }
             } else {
                 document.getElementById('validpoliceofficers').style = "display:none";
                 po = true;
+            }
+        }
+        attend = () => {
+            if (tr) {
+
+                document.getElementById('attend').style = "display:block";
+                tr = false;
+            } else {
+                document.getElementById('attend').style = "display:none";
+                tr = true;
             }
         }
         signout = () => {

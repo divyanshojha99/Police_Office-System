@@ -44,7 +44,6 @@ if (isset($_POST['user_name'])){
 
                 <div> <input class="input-pl" type="text" name="user_name" placeholder="User Name" required/></div>
                 <div> <input class="input-pl" type="password" name="pass" placeholder="Password" required /></div>
-                <p class="userforget" ><a href='./UserRegistration.php'>Forget Password?</a></p>
 
                 <input id="button-login" name="submit" type="submit" value="LOGIN" />
             </form>

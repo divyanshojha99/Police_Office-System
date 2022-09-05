@@ -34,12 +34,22 @@ if (isset($_POST['policeid'])){
         if($rows==1){
             if($rows2==1){
 	    $_SESSION['policeid'] = $policeid;
-	    header("Location: welcome_police.php");
+        date_default_timezone_set("Asia/Kolkata");
+        $date = date('Y-m-d');
+        $time=date("H:i:s");
+                $w=mysqli_query($con,"INSERT INTO attendence (`policeid`,`date`,`time`,`attendence`) values('$policeid','$date','$time','present')");
+
+            
+        header("Location: welcome_police.php");
+	   
          }
-         echo "<div class='form'>
-<h3 style=color:white; >Your police ID not approved yet from Admin,Kindly Wait! <a style=color:orange; href='PoliceLogin.php'>Try Again</a></h3>
+         else{
+            echo "<div class='form'>
+<h3 style=color:white; >Your Police ID not approved yet from Admin,Kindly Wait! <a style=color:orange; href='PoliceLogin.php'>Try Again</a></h3>
 <br> </div>";
-        }else{
+        }
+    }
+        else{
 	echo "<div class='form'>
 <h3 style=color:white; >Police ID/Username/password is incorrect, <a style=color:orange; href='PoliceLogin.php'>Try Again</a></h3>
 <br> </div>";

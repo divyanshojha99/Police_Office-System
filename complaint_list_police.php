@@ -1,30 +1,34 @@
 <?php
-require('connection.php');
+require_once('connection.php');
 session_start();
-$user=$_SESSION['user_name'];
-if(!isset($_SESSION["user_name"])){
-header("Location: UserLogin.php");
+$poid=$_SESSION['policeid'];
+$query1= "SELECT `office` FROM police WHERE `policeid`='$poid' ";
+$result = $con->query($query1);
+$office = $result->fetch_array()[0] ?? '';
+if(!isset($_SESSION["policeid"])){
+header("Location: PoliceLogin.php");
 exit(); }
 ?>
+
 <html>
   <head>
-    <!-- <link rel="stylesheet" href="./welcome_police.css"> -->
-    <style><?php echo include 'welcome_police.css' ?></style>
+    <link rel="stylesheet" href="./welcome_police.css">
+  
   </head>
 <body>
 
-
 <?php
-require('connection.php');
-$rows = mysqli_query($con, "SELECT * FROM `userfir` where username='$user'");
+require_once('connection.php');
+$rows = mysqli_query($con, "SELECT * FROM userfir where crimecity='$office' and `confirmwithdraw`='no'");
 ?>
 <table class="clist" align="center" border="1">
   <tr>
-    <td>Serial No.</td>
+  <td>Serial No.</td>
     <td>Case ID</td>
     <td>User Name</td>
     <td>Name</td>
     <td>Father Name</td>
+    <td>Fir Written Date and Time</td>
     <td>Victim</td>
     <td>Suspect</td>
     <td>Crime Incident Information</td>
@@ -37,11 +41,10 @@ $rows = mysqli_query($con, "SELECT * FROM `userfir` where username='$user'");
     <td>Incident Proof</td>  
     <td>Signature</td>
     <td>Crime District</td>
-    <td>NearBy Police Station</td>
+    <td>Registered Police Station</td>
     <td>Location</td>
-    <td>Working Police Officer Details</td>
-    <td>FeedBack From Police</td>
-    <td>Withdraw</td>
+    <td>Take this Case</td>
+    <td>Give Feedback Report</td>
 
   </tr>
 
@@ -53,6 +56,7 @@ $rows = mysqli_query($con, "SELECT * FROM `userfir` where username='$user'");
       <td><?php echo $row["username"]; ?></td>
       <td><?php echo $row["victimname"]; ?></td>
       <td><?php echo $row["vfathername"]; ?></td>
+      <td><?php echo $row["casedt"]; ?></td>
       <td><?php echo $row["victim"]; ?></td>
       <td><?php echo $row["witness"]; ?></td>
       <td><?php echo $row["crimeinfo"]; ?></td>
@@ -67,9 +71,9 @@ $rows = mysqli_query($con, "SELECT * FROM `userfir` where username='$user'");
       <td><?php echo $row["crimecity"]; ?></td>
       <td><?php echo $row["crimestation"]; ?></td>
       <td><?php echo $row["crimelocation"]; ?></td>
-      <td><?php echo $row["workingpolice"]; ?></td>
-      <td><?php echo $row["feedback"]; ?></td>
-      <td><button><a  class="appbtn2" href="welcome_user.php?caseidd=<?=$row['caseid']?>">Request</a></button></td>
+      <td><a  class="appbtn2" href="welcome_police.php?hand=<?=$row['caseid']?>">Handle</a></td>
+      <td><a  class="appbtn2" href="welcome_police.php?caseidfed=<?=$row['caseid']?>">FeedBack</a></td>
+
       
 
     </tr>

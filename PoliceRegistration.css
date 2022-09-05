@@ -134,7 +134,7 @@ input::file-selector-button {
     font-size: 0.8rem;
 }
 
-#police_city {
+#police_city,#country {
     width: 15rem;
     height: 2rem;
     padding: 0.2rem 1rem;

@@ -52,7 +52,7 @@ $rows = mysqli_query($con, "SELECT * FROM userfir where `confirmwithdraw`='no'")
       <td><a target="_blank" class="appbtn2" href="fileview.php?pdf=<?=$row['signature']?>">VIEW</a></td>
       <td><?php echo $row["crimecity"]; ?></td>
       <td><?php echo $row["crimelocation"]; ?></td>
-      <td><button><a href="updates.php?casei=<?=$row['caseid']?>">Accept</a></button></td>
+      <td><button><a href="welcome_police.php?casei=<?=$row['caseid']?>">Accept</a></button></td>
       
 
     </tr>

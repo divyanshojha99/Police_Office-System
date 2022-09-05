@@ -65,7 +65,7 @@ font-family: 'Rajdhani', sans-serif;
     background-color: var(--opacBlack);
     padding: 1rem;
     width: 60%;
-    height: 100rem;
+    height: 110rem;
     color: var(--white);
     font-family: 'Poppins', sans-serif;
     display: none;
@@ -238,6 +238,13 @@ input::file-selector-button {
     border-radius: 2%/10%;
     margin-bottom: 1rem;
 }
+#police_city,#country {
+    width: 15rem;
+    height: 2rem;
+    padding: 0.2rem 1rem;
+    font-size: 0.8rem;
+    font-family: 'Poppins', sans-serif;
+}
 
 #signature,
 #incident {
@@ -269,7 +276,7 @@ input::file-selector-button {
     #cform {
         padding: 1rem;
         width: 95%;
-        height: 100rem;
+        height: 110rem;
     }
     .lable-box {
         width: 10rem;
@@ -311,7 +318,7 @@ input::file-selector-button {
     #cform {
         padding: 1rem;
         width: 95%;
-        height: 100rem;
+        height: 110rem;
     }
     .lable-box {
         width: 20rem;
@@ -354,7 +361,7 @@ input::file-selector-button {
     #cform {
         padding: 1rem;
         width: 95%;
-        height: 100rem;
+        height: 110rem;
     }
     .lable-box {
         width: 20rem;
@@ -397,7 +404,7 @@ input::file-selector-button {
     #cform {
         padding: 1rem;
         width: 95%;
-        height: 100rem;
+        height: 110rem;
     }
     .lable-box {
         width: 20rem;
@@ -440,7 +447,7 @@ input::file-selector-button {
     #cform {
         padding: 1rem;
         width: 95%;
-        height: 100rem;
+        height: 110rem;
     }
     .lable-box {
         width: 10rem;
@@ -480,7 +487,7 @@ input::file-selector-button {
     #cform {
         padding: 1rem;
         width: 95%;
-        height: 100rem;
+        height: 110rem;
     }
     .lable-box {
         width: 10rem;

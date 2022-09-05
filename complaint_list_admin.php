@@ -1,8 +1,12 @@
-
+<?php
+session_start();
+if(!isset($_SESSION["adminid"])){
+header("Location: adminlogin.php");
+exit(); }
+?>
 <html>
   <head>
     <link rel="stylesheet" href="./welcome_police.css">
-  
   </head>
 <body>
 
@@ -17,6 +21,7 @@ $rows = mysqli_query($con, "SELECT * FROM userfir");
     <td>User Name</td>
     <td>Name</td>
     <td>Father Name</td>
+    <td>Fir Written Date and Time</td>
     <td>Victim</td>
     <td>Suspect</td>
     <td>Crime Incident Information</td>
@@ -29,6 +34,7 @@ $rows = mysqli_query($con, "SELECT * FROM userfir");
     <td>Incident Proof</td>  
     <td>Signature</td>
     <td>Crime District</td>
+    <td>Registered Police Station</td>
     <td>Location</td>
     <td>Withdrawn FIR</td>
 
@@ -42,6 +48,7 @@ $rows = mysqli_query($con, "SELECT * FROM userfir");
       <td><?php echo $row["username"]; ?></td>
       <td><?php echo $row["victimname"]; ?></td>
       <td><?php echo $row["vfathername"]; ?></td>
+      <td><?php echo $row["casedt"]; ?></td>
       <td><?php echo $row["victim"]; ?></td>
       <td><?php echo $row["witness"]; ?></td>
       <td><?php echo $row["crimeinfo"]; ?></td>
@@ -54,6 +61,7 @@ $rows = mysqli_query($con, "SELECT * FROM userfir");
       <td><a target="_blank" class="appbtn2" href="fileview.php?pdf=<?=$row['incidentproof']?>">VIEW</a></td>
       <td><a target="_blank" class="appbtn2" href="fileview.php?pdf=<?=$row['signature']?>">VIEW</a></td>
       <td><?php echo $row["crimecity"]; ?></td>
+      <td><?php echo $row["crimestation"]; ?></td>
       <td><?php echo $row["crimelocation"]; ?></td>
       <td><?php echo $row["confirmwithdraw"]; ?></td>
       
